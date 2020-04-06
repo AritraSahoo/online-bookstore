@@ -12,7 +12,7 @@ export class BookService {
   constructor( private httpClient : HttpClient) { }
 
 
-  private baseUrl ="http://localhost:8080/api/v1/books";
+  private baseUrl ="http://localhost:8080/api/v1/books?size=100";
 
   getBooks() : Observable<Book[]>{
      return this.httpClient.get<GetResponseBooks>(this.baseUrl).pipe(
