@@ -12,10 +12,11 @@ export class BookService {
   constructor( private httpClient : HttpClient) { }
 
 
-  private baseUrl ="http://localhost:8080/api/v1/books?size=100";
+  private baseUrl ="http://localhost:8080/api/v1/books";
 
-  getBooks() : Observable<Book[]>{
-     return this.httpClient.get<GetResponseBooks>(this.baseUrl).pipe(
+  getBooks(categoryId: number) : Observable<Book[]>{
+    const searchUrl = `${this.baseUrl}/search/categoryid?id=${categoryId}`;
+     return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
       map(response => response._embedded.books)
      );
   }
